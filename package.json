@@ -1,16 +1,24 @@
 {
-  "name": "login-web",
+  "name": "login-page-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "login-app.js",
+  "description": "A simple login page application for testing CI/CD.",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "echo \"No tests specified\" && exit 0",
+    "dev": "nodemon server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "keywords": [
+    "login",
+    "ci/cd",
+    "web"
+  ],
+  "author": "idhamma",
+  "license": "MIT",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
