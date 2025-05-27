@@ -1,7 +1,8 @@
 pipeline {
     agent {
         docker {
-            image 'node:18-alpine'
+        image 'docker:24.0.7-dind'
+        args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }                     // Jenkins di VPS pakai Docker host
 
