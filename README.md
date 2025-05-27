@@ -22,17 +22,13 @@ login-page-app
    git clone <repository-url>
    ```
 
-2. Navigate to the project directory:
-   ```
-   cd login-page-app
-   ```
 
-3. Install the dependencies:
+2. Install the dependencies:
    ```
    npm install
    ```
 
-4. Open `src/index.html` in your browser to view the login page.
+3. Open `src/index.html` in your browser to view the login page.
 
 ## Usage
 
