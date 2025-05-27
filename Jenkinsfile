@@ -1,5 +1,9 @@
 pipeline {
-    agent any                       // Jenkins di VPS pakai Docker host
+    agent {
+        docker {
+            image 'node:18-alpine'
+        }
+    }                     // Jenkins di VPS pakai Docker host
 
     environment {
         REGISTRY   = 'docker.io'
