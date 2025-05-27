@@ -71,16 +71,20 @@ pipeline {
 
     stage('Deploy to K8s') {
       steps {
-        withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
-          sh """
-          kubectl --kubeconfig=$KUBECONFIG apply -f k8s/namespace.yaml
-          kubectl --kubeconfig=$KUBECONFIG apply -f k8s/rbac.yaml
-          kubectl --kubeconfig=$KUBECONFIG apply -f k8s/service.yaml
-          kubectl --kubeconfig=$KUBECONFIG apply -f k8s/deployment.yaml
-          kubectl --kubeconfig=$KUBECONFIG -n login-app \
-              set image deploy/login-app login-app=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
-          kubectl --kubeconfig=$KUBECONFIG -n login-app rollout status deploy/login-app
-          """
+        script {
+          // Ganti 'your-kubeconfig-credential-id' dengan ID credential kubeconfig Anda di Jenkins
+          withCredentials([file(credentialsId: 'your-kubeconfig-credential-id', variable: 'KUBECONFIG_FILE')]) {
+            sh '''
+                echo "Applying namespace..."
+                kubectl --kubeconfig="${KUBECONFIG_FILE}" apply -f k8s/namespace.yaml
+
+                echo "Applying deployment..."
+                kubectl --kubeconfig="${KUBECONFIG_FILE}" apply -f k8s/deployment.yaml
+
+                echo "Applying service..."
+                kubectl --kubeconfig="${KUBECONFIG_FILE}" apply -f k8s/service.yaml
+            '''
+          }
         }
       }
     }
