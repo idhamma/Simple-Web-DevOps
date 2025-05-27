@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Add build steps if you have any (e.g., npm run build)
+                echo 'No build step needed for static site'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Add test command if you have tests
+                echo 'No tests defined'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploy step placeholder'
+                // Add your deployment steps here
+            }
+        }
+    }
+}

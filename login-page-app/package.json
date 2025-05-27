@@ -1,0 +1,21 @@
+{
+  "name": "login-page-app",
+  "version": "1.0.0",
+  "description": "A simple login page application for testing CI/CD.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "login",
+    "ci/cd",
+    "web"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
