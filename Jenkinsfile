@@ -73,7 +73,7 @@ pipeline {
       steps {
         script {
           // Ganti 'your-kubeconfig-credential-id' dengan ID credential kubeconfig Anda di Jenkins
-          withCredentials([file(credentialsId: 'your-kubeconfig-credential-id', variable: 'KUBECONFIG_FILE')]) {
+          withCredentials([file(credentialsId: 'kiezu-kubernetes-login', variable: 'KUBECONFIG_FILE')]) {
             sh '''
                 echo "Applying namespace..."
                 kubectl --kubeconfig="${KUBECONFIG_FILE}" apply -f k8s/namespace.yaml
