@@ -72,14 +72,21 @@ pipeline {
     stage('Deploy to K8s') {
       steps {
         script {
-          // Ganti 'your-kubeconfig-credential-id' dengan ID credential kubeconfig Anda di Jenkins
           withCredentials([file(credentialsId: 'kiezu-kubernetes-login', variable: 'KUBECONFIG_FILE')]) {
+            // Membuat salinan deployment.yaml untuk dimodifikasi
+            sh 'cp k8s/deployment.yaml k8s/deployment-processed.yaml'
+            // Mengganti placeholder atau tag image lama dengan yang baru
+            // Asumsikan di deployment.yaml Anda ada baris image: kiezu/login-web:PLACEHOLDER_IMAGE_TAG
+            // atau Anda bisa mengganti baris image secara keseluruhan jika polanya pasti
+            sh "sed -i 's|image:.*|image: ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}|g' k8s/deployment-processed.yaml"
+            
             sh '''
                 echo "Applying namespace..."
                 kubectl --kubeconfig="${KUBECONFIG_FILE}" apply -f k8s/namespace.yaml
 
                 echo "Applying deployment..."
-                kubectl --kubeconfig="${KUBECONFIG_FILE}" apply -f k8s/deployment.yaml
+                # Terapkan file yang sudah diproses
+                kubectl --kubeconfig="${KUBECONFIG_FILE}" apply -f k8s/deployment-processed.yaml
 
                 echo "Applying service..."
                 kubectl --kubeconfig="${KUBECONFIG_FILE}" apply -f k8s/service.yaml

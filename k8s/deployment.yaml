@@ -14,8 +14,9 @@ spec:
         app: login-app
     spec:
       containers:
-      - name: login-app
+      - name: login-web-container
         image: kiezu/login-web:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         resources:
