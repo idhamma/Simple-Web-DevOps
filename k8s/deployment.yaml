@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
       - name: login-web-container
-        image: kiezu/simple-web-devops:latest
-        imagePullPolicy: Always
+        image: simple-web-devops:local
+        imagePullPolicy: Never
         ports:
         - containerPort: 3000
         resources:
