@@ -1,0 +1,177 @@
+/* =================================
+   File: css/style.css
+   Deskripsi: Styling untuk Website Waktu Sholat Interaktif
+   ================================= */
+
+/* Variabel Warna Global untuk kemudahan kustomisasi */
+:root {
+    --primary-color: #007BFF; /* Biru utama */
+    --secondary-color: #6c757d; /* Abu-abu sekunder */
+    --background-color: #f0f2f5; /* Warna latar belakang halaman */
+    --container-bg: #ffffff;    /* Warna latar belakang untuk kartu/kontainer */
+    --text-color: #333;         /* Warna teks utama */
+    --header-bg: linear-gradient(135deg, #007BFF, #0056b3); /* Gradien untuk header */
+    --shadow: 0 10px 20px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.08); /* Efek bayangan */
+}
+
+/* Pengaturan dasar untuk seluruh halaman */
+html {
+    scroll-behavior: smooth; /* Efek scroll yang halus */
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Font modern dari Google Fonts */
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6; /* Jarak antar baris agar mudah dibaca */
+}
+
+/* Styling untuk bagian Header */
+.header {
+    background: var(--header-bg);
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 2.5rem;
+}
+
+/* Kontainer utama yang membungkus konten */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 1rem;
+    gap: 2rem; /* Jarak antar elemen (peta dan info) */
+}
+
+/* Konsep 'Card' untuk membungkus peta dan info */
+.card {
+    background-color: var(--container-bg);
+    border-radius: 12px; /* Sudut yang tumpul */
+    box-shadow: var(--shadow);
+    width: 90%;
+    max-width: 900px;
+    overflow: hidden; /* Memastikan konten di dalamnya mengikuti sudut tumpul */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animasi halus saat hover */
+}
+
+/* Efek saat kursor mouse di atas card */
+.card:hover {
+    transform: translateY(-5px); /* Sedikit terangkat */
+    box-shadow: 0 15px 25px rgba(0,0,0,0.15), 0 5px 10px rgba(0,0,0,0.1);
+}
+
+/* Styling untuk Div Peta */
+#map {
+    height: 450px;
+    width: 100%;
+    border-bottom: 1px solid #eee; /* Garis pemisah tipis jika diperlukan */
+}
+
+/* Kontainer untuk informasi waktu sholat */
+#info-container {
+    padding: 1.5rem 2rem;
+}
+
+#info-container h2 {
+    margin-top: 0;
+    font-weight: 600;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Teks instruksi awal */
+#instruction {
+    color: var(--secondary-color);
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 2rem 0;
+}
+
+/* Styling untuk Tabel Hasil Waktu Sholat */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Menghilangkan jarak antar border sel */
+    margin-top: 1.5rem;
+}
+
+th, td {
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid #e9ecef; /* Garis pemisah antar baris */
+    text-align: left;
+}
+
+th {
+    display: none; /* Header tabel disembunyikan agar lebih simpel */
+}
+
+td:first-child {
+    font-weight: 600; /* Nama waktu sholat dibuat tebal */
+    color: #555;
+    width: 40%;
+}
+
+td:last-child {
+    font-weight: 400;
+    font-size: 1.2rem; /* Jam dibuat lebih besar */
+    color: var(--primary-color);
+    text-align: right; /* Jam dibuat rata kanan */
+}
+
+/* Hilangkan border bawah di baris terakhir tabel */
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Efek hover pada baris tabel */
+tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Styling untuk kotak info lokasi (koordinat, tanggal, dll) */
+.location-info {
+    background-color: #e9f5ff; /* Latar belakang biru muda */
+    border-left: 5px solid var(--primary-color); /* Garis aksen di kiri */
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.location-info strong {
+    color: var(--primary-color);
+}
+
+/* =================================
+   Desain Responsif untuk Mobile
+   ================================= */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.8rem; /* Ukuran judul lebih kecil di mobile */
+    }
+
+    .card {
+        width: 95%; /* Kartu sedikit lebih lebar di mobile */
+    }
+
+    #info-container {
+        padding: 1rem 1.5rem;
+    }
+
+    td:last-child {
+        font-size: 1.1rem;
+    }
+}

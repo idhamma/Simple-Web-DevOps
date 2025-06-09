@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Login Page App
 
 This project is a simple login page application designed to demonstrate Continuous Integration and Continuous Deployment (CI/CD) practices. 
@@ -42,3 +43,6 @@ Feel free to submit issues or pull requests for improvements or bug fixes.
 ## License
 
 This project is licensed under the MIT License.
+=======
+# Simple-Web-DevOps
+>>>>>>> a619ccd7080047c997f07bf38114bc2f790e4888
