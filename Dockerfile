@@ -1,21 +1,15 @@
-FROM node:18-alpine
+FROM nginx:alpine
 
-# Set working directory
-WORKDIR /app
+# Copy all files from src to nginx html directory
+COPY src/ /usr/share/nginx/html/
 
-# Copy all source files
-COPY src/ ./
-
-# If package.json doesn't exist, create a basic one
-RUN if [ ! -f package.json ]; then \
-    echo '{"name": "simple-web-devops", "version": "1.0.0", "main": "index.js", "scripts": {"start": "node index.js"}, "dependencies": {}}' > package.json; \
+# Create a simple index.html if it doesn't exist
+RUN if [ ! -f /usr/share/nginx/html/index.html ]; then \
+    echo '<html><head><title>Simple Web DevOps</title></head><body><h1>Welcome to Simple Web DevOps</h1><p>Application is running successfully!</p></body></html>' > /usr/share/nginx/html/index.html; \
     fi
 
-# Install dependencies (if any)
-RUN npm install
+# Expose port 80 (default nginx port)
+EXPOSE 80
 
-# Expose port
-EXPOSE 3000
-
-# Start the application
-CMD ["npm", "start"]
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
