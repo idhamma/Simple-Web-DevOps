@@ -4,10 +4,10 @@ metadata:
   name: login-app-service
   namespace: login-app
 spec:
-  type: NodePort
   selector:
     app: login-app
   ports:
     - port: 80
-      targetPort: 3000
+      targetPort: 80
       nodePort: 30341
+  type: NodePort

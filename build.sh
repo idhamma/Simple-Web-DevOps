@@ -53,12 +53,33 @@ if [ $? -eq 0 ]; then
     
     echo "✅ Fresh deployment completed"
     
+    # Wait for pods to be ready
+    echo "⏳ Waiting for pods to be ready..."
+    kubectl wait --for=condition=ready pod -l app=login-app -n login-app --timeout=60s
+    
+    # Get service URL
+    SERVICE_URL=$(minikube service login-app-service -n login-app --url)
+    echo "🌐 Service URL: $SERVICE_URL"
+    
+    # Test service accessibility
+    echo "🧪 Testing service accessibility..."
+    sleep 5
+    if curl -f $SERVICE_URL >/dev/null 2>&1; then
+        echo "✅ Service is accessible!"
+        echo "🎉 Website is ready: $SERVICE_URL"
+    else
+        echo "⚠️  Service test failed, checking configuration..."
+        kubectl get svc -n login-app
+        kubectl get endpoints -n login-app
+    fi
+    
 else
     echo "❌ Build failed!"
     exit 1
 fi
 
 echo ""
-echo "📊 Check deployment status:"
+echo "📊 Final status:"
 echo "   kubectl get pods -n login-app"
 echo "   kubectl get svc -n login-app"
+echo "   kubectl get endpoints -n login-app"
